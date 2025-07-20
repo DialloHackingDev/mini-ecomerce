@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/ecommerce.css">
+    <script src="../js/app.js"defer></script>
+    <title>ecommerce</title>
+</head>
+<body>
+    <header class="mainHeader">
+        <nav class="mainNav">
+            <h1>ecommerce</h1>
+            <ul class="lienNav">
+                <li class="url"><a href="#accueil">accueil</a></li>
+                <li class="url"><a href="#categorie">categorie</a></li>
+                <li class="url"><a href="#produit">produits</a></li>
+            </ul>
+            <div class="lienDroit">
+                <a href="#formElement" id="ajpd">plus de produit</a>
+                <a href="#elementPanier"  class="url"><img id="panierImg" src="../assets/panier.png" alt="image panier"></a>
+            </div>
+        </nav>
+    </header>
+    <!-- //accueil du site -->
+    <section id="accueil" class="accueil">
+        <div class="bannier">
+            <h1 id="tit">bienvenu dans le mon site ecommerce</h1>
+            <button class="ajout">voir la boutique</button>
+        </div>
+        <h1>Nos categories</h1>
+        <div class="categories">
+            <div class="service">
+                <img src="../assets/357584b734b6f11d5e71bb0e26fdda9a.png" alt="image">
+                <h3>vetement</h3>
+            </div>
+            <div class="service">
+                <img src="../assets/49-499038_download-asus-laptop-png-transparent-picture-intel-core.png" alt="">
+                <h3>ordinateur</h3>
+            </div>
+            <div class="service">
+                <img src="../assets/188-1880285_iphone-8-plus-iphone-7-amazon-telephone-portable.png" alt="imge">
+                <h3>telephone</h3>
+            </div>
+        </div>
+        <h1>temoignage sur produit et service</h1>
+        <div class="temoigne">
+            
+        </div>
+    </section>
+    <!-- // la partie categorie du site -->
+    <section id="categorie" class="categorie">
+        <h1>categorie</h1>
+        <div class="bareRecherche">
+            <input type="search" placeholder="rechercher vos produit">
+            <button id="rech">rechercher</button>
+        </div>
+
+        <h1>telephone</h1>
+        <div class="filter">
+            <label>prix minimuin:<input type="number"></label>
+            <label>marque:
+                <select>
+                    <option>samsung</option>
+                    <option>infini</option>
+                    <option>apple</option>
+
+                </select>
+            </label>
+        </div>
+        <div class="produits">
+            
+
+        </div>
+    </section>
+    <!-- // la partie produits du site -->
+    <section id="produit" class="produit">
+        <div class="barrecher">
+            <input type="search" placeholder="nom du produit">
+            <div class="affichage">
+               
+            </div>
+        </div>
+
+        
+
+    </section>
+     <!-- la partie panier du site -->
+    <section id="elementPanier">
+       <h1>votre panier</h1>
+        <div class="ligne-panier">
+            <img src="#" alt="imge produit">
+            <div>
+                <h3>montre connecter</h3>
+                <p>prix: 300000 GNF</p>
+                <label>quantite: <input type="nomber" value="2" min="1"></label>
+                <label> sous total :6000000 GNF</label>
+                <button>supprimer</button>
+            </div>
+        </div>
+        <div class="resume-panier">
+            <p>total produit:6000000 GNF</p>
+            <p>livraison :10000 GNF</p>
+            <p><strong>total :6100000 GNF</strong></p>
+            <button>commander</button>
+        </div>
+    </section>
+    <!-- pour le formulaire de produit -->
+        <section class="formElement" id="formElement">
+            <h1>ajouter un produit</h1>
+            <form class="formProduit">
+                <input type="file" placeholder="ajouter une photo du produit" id="photo">
+                <input type="text" placeholder="donnez le nom du produit" id="nom">
+                <input type="text" placeholder="donnez le prix du produit" id="prix">
+                <select name="" id="cate1" ">
+                    <option>vetement</option>
+                    <option>telephone</option>
+                    <option>ordinateur</option>
+                </select>
+                <button type="submit" id="btaj">ajouter</button>
+            </form>
+        </section>
+    <footer id="mainfooter">
+        diallodev45@gmail.com
+    </footer>
+</body>
+</html>

@@ -1,0 +1,18 @@
+[
+    
+        {"nom":"chemise","prix":100000,"categorie":"vetement","img":"../assets/Apple-Macbook-Pro-PNG-Pic.png"},
+        {"nom":"ordinateur","prix":5000000,"categorie":"ordinateur","img":"../assets/188-1880285_iphone-8-plus-iphone-7-amazon-telephone-portable.png"},
+        {"nom":"telephone","prix":1000000,"categorie":"telephone","img":"../assets/357584b734b6f11d5e71bb0e26fdda9a.png"},
+        {"nom":"chaussure","prix":500000,"categorie":"vetement","img":"../assets/357584b734b6f11d5e71bb0e26fdda9a.png"},
+        {"nom":"costume","prix":10000000,"categorie":"vetement","img":"../assets/357584b734b6f11d5e71bb0e26fdda9a.png"},
+        {"nom":"costume","prix":10000000,"categorie":"vetement","img":"../assets/357584b734b6f11d5e71bb0e26fdda9a.png"},
+        {"nom":"costume","prix":10000000,"categorie":"vetement","img":"../assets/2014-08_DD_externes_1536x1146.jpg"},
+        {"nom":"costume","prix":10000000,"categorie":"vetement","img":"../assets/2014-08_DD_externes_1536x1146.jpg"},
+        {"nom":"costume","prix":10000000,"categorie":"vetement","img":"../assets/357584b734b6f11d5e71bb0e26fdda9a.png"},
+        {"nom":"costume","prix":10000000,"categorie":"vetement","img":"../assets/357584b734b6f11d5e71bb0e26fdda9a.png"},
+        {"nom":"costume","prix":10000000,"categorie":"vetement","img":"../assets/357584b734b6f11d5e71bb0e26fdda9a.png"},
+        {"nom":"costume","prix":10000000,"categorie":"vetement","img":"../assets/357584b734b6f11d5e71bb0e26fdda9a.png"},
+        {"nom":"costume","prix":10000000,"categorie":"vetement","img":"../assets/357584b734b6f11d5e71bb0e26fdda9a.png"}
+
+    
+]
