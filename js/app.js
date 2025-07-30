@@ -1,3 +1,10 @@
+//import des module js
+import { produits } from "../data/produit.js";
+
+// console.log(produits)
+
+
+
 const search = document.querySelector("#search");
 const barreRecher = document.querySelector(".conteneurRecher");
 const panierConten =document.querySelector(".panierConteneur");
@@ -5,13 +12,20 @@ const btnShop =document.querySelector("#shop");
 const utilisateur = document.querySelector(".utilisateur");
 const btnUser = document.querySelector("#user-icon");
 
+const panierConteneur = document.querySelector(".panierConteneur")
+
+
+
+
+
+
 // les evenements de mon script
 search.addEventListener("click",()=>{
     barreRecher.classList.toggle("active");
     panierConten.classList.remove("active");
-    utilisateur.classList.toggle("active");
+    utilisateur.classList.remove("active");
 })
-btnShop.addEventListener("mouseover",()=>{
+btnShop.addEventListener("click",()=>{
     panierConten.classList.toggle("active");
     barreRecher.classList.remove("active");
     utilisateur.classList.remove("active");
@@ -25,139 +39,170 @@ btnUser.addEventListener("click",()=>{
 
 
 
+//gestion de la parite panier du site
+let panier = [];
 
 
-// //declaration des constantes
-// const donne = "../data/produit.json";
-// const formProduit =document.querySelector(".formProduit");
-// let panierProduit = JSON.parse(localStorage.getItem("panierProduit"))|| [];
+if(localStorage.getItem("panier")){
+    panier = JSON.parse(localStorage.getItem("panier"));
+    afficherPanier();
+}
 
 
+// Correction du sélecteur pour le bouton d'ajout au panier (ajouter-panier)
+function activerAjoutPanier() {
+    document.querySelectorAll(".ajouter-panier").forEach(boutton =>{
+        boutton.addEventListener("click",()=>{
+            const produitDiv = boutton.closest(".produitBoxContent");
+            const nom = produitDiv.querySelector(".nom").textContent;
+            const prix = parseInt(produitDiv.querySelector(".prix").textContent);
+            const image = produitDiv.querySelector("img").getAttribute("src");
+            const id = nom + prix;
+            const existant = panier.find(p => p.id === id);
+            if(existant){
+                existant.quantite += 1;
+            }else{
+                panier.push({id,nom,prix,quantite:1,image});
+            }
+            sauvegarderEtAfficher();
+        });
+    });
+}
 
 
+//ajouter au panier
+function afficherPanier(){
+    const liste = document.querySelector(".content1");
+    if(liste) liste.innerHTML = "";
+    panierConteneur.innerHTML = "";
+
+    let total = 0;
+
+    panier.forEach((produit,index) =>{
+        total += produit.prix * produit.quantite;
+        // pour l'entete du panier
+        const elemEtet = document.createElement("div");
+        elemEtet.className = "cartPanier";
+
+        const div = document.createElement("div");
+        div.className = "ligne-panier";
+
+        // Création du contenu HTML sans les onclick inline
+        div.innerHTML = ` 
+                <img src="${produit.image} " alt="imge produit">
+                <div class="infoPanier">
+                    <h3> ${produit.nom} </h3>
+                    <p>prix: ${produit.prix} GNF</p>
+                    <label>quantite: <input type="number" value="${produit.quantite}" min="1" readonly></label>
+                    <label class="total"> sous total :${total} GNF</label>
+                    <button class="btn-plus">+</button>
+                    <button class="btn-moins">-</button>
+                    <button class="btn-supprimer"><i class="fa fa-trash"></i></button>
+                </div>`;
+
+        // Ajout des écouteurs d'événements pour +, - et supprimer
+        const btnPlus = div.querySelector('.btn-plus');
+        const btnMoins = div.querySelector('.btn-moins');
+        const btnSupprimer = div.querySelector('.btn-supprimer');
+        btnPlus.addEventListener('click', () => changeQuantite(index, 1));
+        btnMoins.addEventListener('click', () => changeQuantite(index, -1));
+        btnSupprimer.addEventListener('click', () => supprimer(index));
+
+        elemEtet.innerHTML = `
+            <img src="${produit.image}" alt="image panier">
+                    <div class="cartText">
+                        <h3>${produit.nom} </h3>
+                        <span>${produit.prix}</span>
+                        <span>${produit.quantite}x</span>    
+                    </div>
+                    <div class="controlPanier">
+                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-minus"></i>
+                    </div>
+                    <div class="poubell">
+                        <i class="fa fa-trash"></i>
+                    </div>
+                    <h2 class="total">total:${total}</h2>
+                    <a href="#" class="btn">voir panier</a>`;
+        if(liste) liste.appendChild(div);
+        panierConteneur.appendChild(elemEtet);
+    });
+    const totalElem = document.querySelector(".total");
+    if(totalElem) totalElem.textContent = total;
+    console.log(total);
+}
+if (panier.length > 0) {
+    console.log(panier[0].quantite);
+}
+//pour changer la quantite
+// Fonction pour changer la quantité d'un produit dans le panier
+// index : position du produit dans le tableau panier
+// variation : +1 pour ajouter, -1 pour retirer
+// Fonction pour changer la quantité d'un produit dans le panier
+// index : position du produit dans le tableau panier
+// variation : +1 pour ajouter, -1 pour retirer
+function changeQuantite(index, variation) {
+    // Vérifie que l'index est valide
+    if (index < 0 || index >= panier.length) return;
+
+    // Ajoute la variation à la quantité actuelle
+    panier[index].quantite += variation;
+
+    // Si la quantité devient inférieure à 1, on retire le produit du panier
+    if (panier[index].quantite < 1) {
+        panier.splice(index, 1);
+    }
+
+    // Sauvegarde le panier dans le localStorage et met à jour l'affichage
+    sauvegarderEtAfficher();
+}
+
+//fonction supprimer
+function supprimer(index){
+    panier.splice(index,1);
+    localStorage.setItem("panier",JSON.stringify(panier));
+    sauvegarderEtAfficher();
+}
+
+//fonction sauvegarde et afficher
+function sauvegarderEtAfficher(){
+    localStorage.setItem("panier",JSON.stringify(panier));
+    afficherPanier();
+}
+
+//pour l'affichage dynamique
+
+//sauvegarder de dans le local stora
+localStorage.setItem("produits",JSON.stringify(produits));
+
+//recuperation depuis le local
+const saveProduits = JSON.parse(localStorage.getItem("produits"));
+
+//afficchage dynamique
 
 
-
-// // les ecoutteurs d'evenements
-// window.addEventListener("load", ()=>{
-//     if(!window.location.hash){
-//         window.location.hash = "#accueil"
-//     }
-//     afficherElementHash();
-// });
-// window.addEventListener("hashchange",afficherElementHash);
-
-// formProduit.addEventListener("submit",function(e){
-//     validForm(e);
-// });
-
-
-// // les fonctions sur le site
-
-// //function de hash
-// function afficherElementHash(){
-//     //declaration des constants
-//     const hash =window.document.location.hash.replace("#","")|| "#accueil";
-//     const vues =document.querySelectorAll("section");
-
-//     vues.forEach(vue => {
-//         if(vue.id === hash){
-//             vue.style.display = "block" ;
-//         }else{
-//             vue.style.display = "none";
-//         }
-//     });
-// }
-
-
-// async function recuperationDonne() {
-//         try {
-//             const response = await fetch(donne)
-//             if(!response.ok) throw new ("errro lors du chargement des donne!");
-//             const dataElement = await response.json();
-//             return dataElement
-//         } catch (error) {
-            
-//         }
-// }
-
-//  recuperationDonne().then(recu =>{
-//     creElementCategorie(recu);
-//     creElementProduit(recu);
-//     console.log(recu[0].nom)
-// });
-
-
-// //fonction de creation element 
-
-// function creElementCategorie(element){
-//     const produit = document.querySelector(".produits")
-//     produit.innerHTML = ""
-//     element.forEach((p,index) => {
-//         const div =document.createElement("div")
-//         div.classList = "produitCard";
-//         div.innerHTML = `
-//                 <img src= ${element[index].img} alt="image i phone">
-//                 <h3> ${element[index].nom} </h3>
-//                 <p> ${element[index].prix} GNF</p>
-//                 <button>ajouter au panier</button>`   
-//             produit.appendChild(div) 
-//     });
-    
-
-// }
-
-// function creElementProduit(ele){
-//     const afficheProduit = document.querySelector(".affichage")
-//     afficheProduit.innerHTML = ""
-//     ele.forEach((p,index) => {
-//         const div =document.createElement("div")
-//         div.classList = "produt1";
-//         div.innerHTML = `
-//                 <img src= ${ele[index].img} alt="image i phone" class ="elementImg">
-//                 <h3> ${ele[index].nom} </h3>
-//                 <p> ${ele[index].prix} GNF</p>
-//                 <button>ajouter au panier</button>`   
-//             afficheProduit.appendChild(div) 
-//     });
-
-// }
-
-
-// //fonction de validation du formulaire
-// function validForm(event){
-//      event.preventDefault();
-
-//      //selection les elements 
-//      const nomProduit =document.querySelector("#nom").value;
-//      const PhotoFile =document.querySelector("#photo").value;
-//      const prixProduit =document.querySelector("#prix").value;
-//      const selElement = document.querySelector("#cate1").value;
-
-//     if(nomProduit ===""|| PhotoFile ===""|| prixProduit ===""||selElement ===""){
-//         alert("les champs ne dois pas etre vide!")
-//     }
-    
-//     // element du tableau
-//     const produitUser ={
-//         nom:nomProduit,
-//         prix:prixProduit,
-//         photo:PhotoFile,
-//         categorie:selElement
-//     }
-//     localStorage.setItem("produitUser",JSON.stringify(panierProduit));
-//     panierProduit.push(produitUser);
-//     console.log(panierProduit)
-
-//     formProduit.reset();
-    
-// }
-// //FONCTION UNIFICATION DES PRODUITS
-// function unificationProduit(){
-//     const produitJson = recuperationDonne();
-//     const produitLocaStorage = panierProduit;
-//     const touProduits =[...produitJson, ...produitLocaStorage]
-//     console.log(touProduits)
-// }
-
-// console.log(panierProduit)
+function produitDinamiq(){
+    const produitList = document.querySelector(".produitBox");
+    if(!produitList) return;
+    produitList.innerHTML = "";
+    saveProduits.forEach(data =>{
+        const div = document.createElement("div");
+        div.className = "produitBoxContent";
+        // Correction : ajout de guillemets autour de ${data.image} pour l'attribut src
+        div.innerHTML = ` 
+                   <img src="${data.image}" alt="">
+                    <h2 class="nom">${data.nom}</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                        <span class="prix">${data.prix}</span>
+                        <i class="fa fa-shopping-cart ajouter-panier"></i>`;
+        produitList.appendChild(div);
+    });
+    activerAjoutPanier();
+}
+produitDinamiq();

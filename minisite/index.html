@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/all.min.css">
     <link rel="stylesheet" href="../style/ecommerce.css">
-    <script src="../js/app.js"defer></script>
     <title>ecommerce</title>
 </head>
 <body>
@@ -17,7 +16,7 @@
             <h1 class="logo">AFRICA <span>SHOP</span></h1>
             <ul class="lienNav">
                 <li class="url"><a class="active" href="#accueil">accueil</a></li>
-                <li class="url"><a href="#categorie">categorie</a></li>
+                <li class="url"><a href="#nouveArivage">categorie</a></li>
                 <li class="url"><a href="#produit">produits</a></li>
             </ul>
             <div class="nav-icones">
@@ -31,19 +30,23 @@
             </div>
             <!-- panier du site -->
               <div class="panierConteneur">
-                <div class="cartPanier">
+                <!-- <div class="cartPanier">
                     <img src="../assets/t-short1.png" alt="image panier">
                     <div class="cartText">
                         <h3>T-shirt</h3>
                         <span>3$</span>
-                        <span>1x</span>
+                        <span>1x</span>    
+                    </div>
+                    <div class="controlPanier">
+                        <i class="fas fa-plus"></i>
+                        <i class="fas fa-minus"></i>
                     </div>
                     <div class="poubell">
                         <i class="fa fa-trash"></i>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="cartPanier">
+                <!-- <div class="cartPanier">
                     <img src="../assets/t-short2.jpg" alt="image panier">
                     <div class="cartText">
                         <h3>T-shirt</h3>
@@ -53,9 +56,9 @@
                     <div class="poubell">
                         <i class="fa fa-trash"></i>
                     </div>
-                </div>
-                <h2 id="total">total:55$</h2>
-                <a href="#" class="btn">voir panier</a>
+                </div> -->
+                <!-- <h2 class="total">total:55$</h2>
+                <a href="#" class="btn">voir panier</a> -->
                 
              </div>
              <!-- utilisateur du site -->
@@ -73,130 +76,238 @@
     <!-- //accueil du site -->
     <!-- ################################################### -->
 
-    <!-- <section id="accueil" class="accueil">
-        <div class="bannier">
-            <h1 id="tit">bienvenu dans le mon site ecommerce</h1>
-            <button class="ajout">voir la boutique</button>
+    <section id="accueil" class="accueil">
+        <div class="homeContent">
+            <span>E-commerce</span>
+            <h1>tendance et tranquilite</h1>
+            <a href="#" class="btn">en savoir plus</a>
         </div>
-        <h1>Nos categories</h1>
-        <div class="categories">
-            <div class="service">
-                <img src="../assets/357584b734b6f11d5e71bb0e26fdda9a.png" alt="image">
-                <h3>vetement</h3>
-            </div>
-            <div class="service">
-                <img src="../assets/49-499038_download-asus-laptop-png-transparent-picture-intel-core.png" alt="">
-                <h3>ordinateur</h3>
-            </div>
-            <div class="service">
-                <img src="../assets/188-1880285_iphone-8-plus-iphone-7-amazon-telephone-portable.png" alt="imge">
-                <h3>telephone</h3>
-            </div>
-        </div>
-        <h1>temoignage sur produit et service <i class="fab - fa-facebook"></i></h1>
-        <div class="temoigne">
-            
+        <div class="acueilleImg">
+            <img src="../assets/accueil.jpg" alt="">
         </div>
     </section>
     <!-- ################################################### -->
-    <!-- // la partie categorie du site -->
+    <!-- // la partie nouvelle arivage -->
     <!-- ################################################### -->
-    <!-- <section id="categorie" class="categorie">
-        <h1>categorie</h1>
-        <div class="bareRecherche">
-            <input type="search" placeholder="rechercher vos produit">
-            <button id="rech">rechercher</button>
+     <section class="nouveArivage" id="nouveArivage">
+        <div class="sectionHeding">
+            <h2>Nouvelle <span>arivage</span></h2>
         </div>
-
-        <h1>telephone</h1>
-        <div class="filter">
-            <label>prix minimuin:<input type="number"></label>
-            <label>marque:
-                <select>
-                    <option>samsung</option>
-                    <option>infini</option>
-                    <option>apple</option>
-
-                </select>
-            </label>
+        <div class="news-cont swiper">
+            <div class="swipper-wrapper">
+                <div class="swiper-slide box">
+                    <img src="../assets/austin-poon-JO_S6ewBqAk-unsplash.jpg" alt="">
+                    <div class="content">
+                        <button class="btn"ajouter-panier>ajouter</button>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="../assets/austin-poon-JO_S6ewBqAk-unsplash.jpg" alt="">
+                    <div class="content">
+                        <button class="btn"ajouter-panier>ajouter</button>
+                    </div>
+                </div>
+                <div class="swiper-slide box">
+                    <img src="../assets/austin-poon-JO_S6ewBqAk-unsplash.jpg" alt="">
+                    <div class="content">
+                        <button class="btn"ajouter-panier>ajouter</button>
+                    </div>
+                </div>
+              
+            </div>
         </div>
-        <div class="produits">
-            
+     </section>
 
-        </div>
-    </section>
     <!-- ################################################### -->
     <!-- // la partie produits du site -->
     <!-- ################################################### -->
     <section id="produit" class="produit">
-        <div class="barrecher">
-            <input type="search" placeholder="nom du produit">
-            <div class="affichage">
-               
+        <div class="sectionHeding">
+            <h2>Nos <span>produit</span></h2>
+        </div>
+        <div class="produitContent">
+
+            <div class="produitBox">
+                <!-- <div class="produitBoxContent">
+                     <img src="../assets/D_NQ_NP_602446-MLB27351575081_052018-O.jpg" alt="">
+                    <h2 class="nom">T-short</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                        <span class="prix">25$</span>
+                        <i class="fa fa-shopping-cart ajouter-panier"></i>
+                </div>
+
+                <div class="produitBoxContent">
+                     <img src="../assets/D_NQ_NP_602446-MLB27351575081_052018-O.jpg" alt="">
+                    <h2 class="nom">T-short</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                        <span class="prix">25$</span>
+                        <i class="fa fa-shopping-cart ajouter-panier"></i>
+                </div>
+
+                <div class="produitBoxContent">
+                     <img src="../assets/D_NQ_NP_602446-MLB27351575081_052018-O.jpg" alt="">
+                    <h2 class="nom">T-short</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                        <span class="prix">25$</span>
+                        <i class="fa fa-shopping-cart ajouter-panier"></i>
+                </div>
+
+                <div class="produitBoxContent">
+                     <img src="../assets/D_NQ_NP_602446-MLB27351575081_052018-O.jpg" alt="">
+                    <h2 class="nom">T-short</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                        <span class="prix">25$</span>
+                        <i class="fa fa-shopping-cart ajouter-panier"></i> -->
+                </div>
+
             </div>
         </div>
-
     
     </section>
+    <!-- ################################################### -->
+     <!-- vos avis -->
+    <!-- ################################################### -->
+     <section class="reviews" id="reviews">
+        <div class="sectionHeding">
+            <h2>Avis <span>Client</span></h2>
+        </div>
+        <div class="reviewConteneur">
+            <div class="reveBox">
+                <img src="../assets/Canon-EOS-R6.jpg" alt="">
+                <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem fugit repudiandae unde temporibus ipsum ad eum libero reiciendis obcaecati beatae quod exercitationem quaerat animi, nostrum illo? Debitis libero nisi tenetur.    
+                    </p>
+                    <h2>ousmane diallo</h2>
+            </div>
+
+            <div class="reveBox">
+                <img src="../assets/Canon-EOS-R6.jpg" alt="">
+                <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem fugit repudiandae unde temporibus ipsum ad eum libero reiciendis obcaecati beatae quod exercitationem quaerat animi, nostrum illo? Debitis libero nisi tenetur.    
+                    </p>
+                    <h2>fode momo</h2>
+            </div>
+
+            <div class="reveBox">
+                <img src="../assets/Canon-EOS-R6.jpg" alt="">
+                <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem fugit repudiandae unde temporibus ipsum ad eum libero reiciendis obcaecati beatae quod exercitationem quaerat animi, nostrum illo? Debitis libero nisi tenetur.    
+                    </p>
+                    <h2>moussa sow</h2>
+            </div>
+        </div>
+     </section>
     <!-- ################################################### -->
      <!-- la partie panier du site -->
     <!-- ################################################### -->
     <section id="elementPanier">
-       <h1>votre panier</h1>
-        <div class="ligne-panier">
-            <img src="#" alt="imge produit">
-            <div>
-                <h3>montre connecter</h3>
-                <p>prix: 300000 GNF</p>
-                <label>quantite: <input type="nomber" value="2" min="1"></label>
-                <label> sous total :6000000 GNF</label>
-                <button>supprimer</button>
+       <div class="sectionHeding">
+            <h2> le <span>panier</span></h2>
+        </div>
+        <!-- le contenuer du panier -->
+       <div class="content1">     
+            
+       
+       <div class="resume-panier">
+                <p>total produit:6000000 GNF</p>
+                <p>livraison :10000 GNF</p>
+                <p><strong id="total">total :6100000 GNF</strong></p>
+                <button>commander</button>
             </div>
-        </div>
-        <div class="resume-panier">
-            <p>total produit:6000000 GNF</p>
-            <p>livraison :10000 GNF</p>
-            <p><strong>total :6100000 GNF</strong></p>
-            <button>commander</button>
-        </div>
-    </section> 
-    <!-- ################################################### -->
-    <!-- pour le formulaire de produit -->
-    <!-- ################################################### -->
-        <section class="formElement" id="formElement">
-            <h1>ajouter un produit</h1>
-            <form class="formProduit">
-                <input type="file" placeholder="ajouter une photo du produit" id="photo">
-                <input type="text" placeholder="donnez le nom du produit" id="nom">
-                <input type="text" placeholder="donnez le prix du produit" id="prix">
-                <select name="" id="cate1" ">
-                    <option>vetement</option>
-                    <option>telephone</option>
-                    <option>ordinateur</option>
-                </select>
-                <button type="submit" id="btaj">ajouter</button>
-            </form>
-        </section>
+    </section>
+         
     <!-- ################################################### -->
     <!--la partie footer de mon site -->
     <!-- ################################################### -->
 
-    <footer id="mainfooter">
-        <div class="footer-conteneur">
-            <div class="footer-logo">
-                <h2>AFICA <span>SHOP</span></h2>
-                <p>connecter les idées et les solutions .</p>
-            </div>
-            <div class="footer-conctact">
-                <h2>conctact</h2>
-                <p>Email : diallodev45@gmail.com</p>
-                <p>telephone : diallodev45@gmail.com</p>
-                <p>Adress : Labe ,Guinée</p>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy:2025 DIALLO . Tous droits réservés</p>
+    <footer>
+        <div class="footer-box">
+            <h2>DIALLOSHOP</h2>
+        </div>
+        <div class="social">
+            <i class="fab fa-facebook"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-youtube"></i>
+        </div>
+
+        <div class="footer-box">
+            <h2>Information</h2>
+            <li><a href="#">Conduction de vente</a></li>
+            <li><a href="#">mention legal</a></li>
+            <li><a href="#">Nous contacter</a></li>
+
+        </div>
+
+        <div class="footer-box">
+            <h2>Nos locaux</h2>
+            <li><a href="#">Guinée</a></li>
+            <li><a href="#">Senegal</a></li>
+            <li><a href="#">France</a></li>
+
+        </div>
+
+        <div class="footer-box">
+            <h2>Payement</h2>
+            <div class="payement">
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
+                <img src="" alt="">
             </div>
         </div>
-    </footer> -->
+    </footer>
+
+    <div class="copy">
+        <p>&copy: DIALLO OUSMANE tous droits reserves -2025</p>
+    </div>
+    <script src="../data/produit.js"></script>
+    <script type="module" src="../js/app.js"></script>
 </body>
 </html>
