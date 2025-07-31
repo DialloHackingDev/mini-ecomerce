@@ -166,7 +166,12 @@ nav:active{
 .cartPanier{
     display: flex;
     align-items: center;
-    column-gap: 1.7rem;
+    padding: 2rem;
+    flex-direction: row;
+    row-gap: 1rem;
+    justify-content: space-between;
+    border-bottom: var(--accent) solid 0.3rem;
+    
 }
 .cartPanier img{
     width: 100px;
@@ -175,16 +180,28 @@ nav:active{
 .cartPanier h3{
     font-size: 1rem;
     cursor: pointer;
+    text-transform: uppercase;
+    
 }
 .cartPanier .fa,.fas{
-    font-size: 1.75rem;
+    font-size: 1rem;
     cursor: pointer;
 }
 .controlPanier {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
+    font-size: 1rem;
+    column-gap: 2rem;
+    margin: 1rem;
+    background-color: #e2e2e2;
+}
+.total{
+    font-size: 1rem;
+    margin-left: 1rem;
+    text-transform: uppercase;
+    color: var(--accent);
 }
 .cartPanier .fa:hover,
 .fas:hover{
@@ -525,7 +542,9 @@ footer img {
 .content1 .ligne-panier img{
     width: 200px;
 }
+.total-panier-global-side{
 
+}
 /* ########################################### */
 /* mediaqury*/
 /* ########################################### */

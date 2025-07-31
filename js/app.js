@@ -1,3 +1,4 @@
+
 //import des module js
 import { produits } from "../data/produit.js";
 
@@ -12,8 +13,55 @@ const btnShop =document.querySelector("#shop");
 const utilisateur = document.querySelector(".utilisateur");
 const btnUser = document.querySelector("#user-icon");
 
-const panierConteneur = document.querySelector(".panierConteneur")
 
+const panierConteneur = document.querySelector(".panierConteneur");
+
+// Sélectionne l'input de recherche (assure-toi que ton HTML a bien <input id="search-input">)
+const searchInput = document.querySelector("#search-input");
+if (searchInput) {
+    // Quand on tape dans la barre de recherche, on lance la recherche
+    searchInput.addEventListener("input", rechercherProduit);
+}
+
+
+
+
+
+// Fonction de recherche des produits
+// Cette fonction filtre les produits selon le texte tapé dans la barre de recherche
+function rechercherProduit() {
+    const valeurChercher = searchInput.value.toLowerCase();
+    // On filtre les produits dont le nom contient la valeur recherchée
+    const produitFilteres = produits.filter(produit =>
+        produit.nom.toLowerCase().includes(valeurChercher)
+    );
+    afficherProduitFilter(produitFilteres);
+}
+
+
+//fonction afficher produit filter
+function afficherProduitFilter(produits){
+    const produitList = document.querySelector(".produitBox");
+    if(!produitList) return;
+    produitList.innerHTML = "";
+    produits.forEach(data =>{
+        const div = document.createElement("div");
+        div.className = "produitBoxContent";
+        // Correction : ajout de guillemets autour de ${data.image} pour l'attribut src
+        div.innerHTML = ` 
+                   <img src="${data.image}" alt="">
+                    <h2 class="nom">${data.nom}</h2>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                        <span class="prix">${data.prix}</span>
+                        <i class="fa fa-shopping-cart ajouter-panier"></i>`;
+        produitList.appendChild(div);
+});}
 
 
 
@@ -94,7 +142,7 @@ function afficherPanier(){
                     <h3> ${produit.nom} </h3>
                     <p>prix: ${produit.prix} GNF</p>
                     <label>quantite: <input type="number" value="${produit.quantite}" min="1" readonly></label>
-                    <label class="total"> sous total :${total} GNF</label>
+                    <label class="total"> sous total :${produit.prix * produit.quantite} GNF</label>
                     <button class="btn-plus">+</button>
                     <button class="btn-moins">-</button>
                     <button class="btn-supprimer"><i class="fa fa-trash"></i></button>
@@ -108,6 +156,7 @@ function afficherPanier(){
         btnMoins.addEventListener('click', () => changeQuantite(index, -1));
         btnSupprimer.addEventListener('click', () => supprimer(index));
 
+        // Ajout du contenu pour le panier latéral avec boutons interactifs
         elemEtet.innerHTML = `
             <img src="${produit.image}" alt="image panier">
                     <div class="cartText">
@@ -116,20 +165,48 @@ function afficherPanier(){
                         <span>${produit.quantite}x</span>    
                     </div>
                     <div class="controlPanier">
-                        <i class="fas fa-plus"></i>
-                        <i class="fas fa-minus"></i>
+                        <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                        <button class="btn-moins"><i class="fa fa-minus"></i></button>
                     </div>
                     <div class="poubell">
-                        <i class="fa fa-trash"></i>
+                        <button class="btn-supprimer"><i class="fa fa-trash"></i></button>
                     </div>
-                    <h2 class="total">total:${total}</h2>
+                    <h2 class="total">total:${produit.prix * produit.quantite} GNF</h2>
                     <a href="#" class="btn">voir panier</a>`;
+
+        // Ajout des écouteurs d'événements pour +, - et supprimer dans le panier latéral
+        const btnPlusSide = elemEtet.querySelector('.btn-plus');
+        const btnMoinsSide = elemEtet.querySelector('.btn-moins');
+        const btnSupprimerSide = elemEtet.querySelector('.btn-supprimer');
+        btnPlusSide.addEventListener('click', () => changeQuantite(index, 1));
+        btnMoinsSide.addEventListener('click', () => changeQuantite(index, -1));
+        btnSupprimerSide.addEventListener('click', () => supprimer(index));
+
         if(liste) liste.appendChild(div);
         panierConteneur.appendChild(elemEtet);
     });
-    const totalElem = document.querySelector(".total");
-    if(totalElem) totalElem.textContent = total;
-    console.log(total);
+
+// Fonction qui calcule la somme totale de tous les produits dans le panier
+function getTotalPanier() {
+    // On additionne le prix * quantité de chaque produit
+    return panier.reduce((somme, produit) => somme + (produit.prix * produit.quantite), 0);
+}
+
+    // Affichage du total général en bas de la liste principale
+    if(liste) {
+        const totalDiv = document.createElement('div');
+        totalDiv.className = 'total-panier-global';
+        totalDiv.innerHTML = `<h2>Total du panier : ${getTotalPanier()} GNF</h2>`;
+        liste.appendChild(totalDiv);
+    }
+
+    // Affichage du total général dans le panier latéral
+    const totalSideDiv = document.createElement('div');
+    totalSideDiv.className = 'total-panier-global-side';
+    totalSideDiv.innerHTML = `<h2>Total du panier : ${getTotalPanier()} GNF</h2>`;
+    panierConteneur.appendChild(totalSideDiv);
+
+    console.log(getTotalPanier());
 }
 if (panier.length > 0) {
     console.log(panier[0].quantite);
@@ -172,8 +249,9 @@ function sauvegarderEtAfficher(){
 
 //pour l'affichage dynamique
 
-//sauvegarder de dans le local stora
-localStorage.setItem("produits",JSON.stringify(produits));
+
+// Sauvegarde la liste des produits dans le localStorage
+localStorage.setItem("produits", JSON.stringify(produits));
 
 //recuperation depuis le local
 const saveProduits = JSON.parse(localStorage.getItem("produits"));
