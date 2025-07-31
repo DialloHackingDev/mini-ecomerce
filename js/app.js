@@ -4,7 +4,15 @@ import { produits } from "../data/produit.js";
 
 // console.log(produits)
 
-
+//style pour le nav
+const nav = document.querySelector("nav");
+window.addEventListener("scroll",()=>{
+    if(window.scrolleY !== 0){
+        nav.style.background ="transparent"
+    }else{
+        nav.style.background = "#fff"
+    }
+})
 
 const search = document.querySelector("#search");
 const barreRecher = document.querySelector(".conteneurRecher");
@@ -31,7 +39,12 @@ if (searchInput) {
 // Cette fonction filtre les produits selon le texte tapé dans la barre de recherche
 function rechercherProduit() {
     const valeurChercher = searchInput.value.toLowerCase();
-    // On filtre les produits dont le nom contient la valeur recherchée
+    if (valeurChercher.trim() === "") {
+        // Si l'input est vide, on réaffiche tous les produits (état initial)
+        produitDinamiq();
+        return;
+    }
+    // Sinon, on filtre normalement
     const produitFilteres = produits.filter(produit =>
         produit.nom.toLowerCase().includes(valeurChercher)
     );
@@ -61,7 +74,9 @@ function afficherProduitFilter(produits){
                         <span class="prix">${data.prix}</span>
                         <i class="fa fa-shopping-cart ajouter-panier"></i>`;
         produitList.appendChild(div);
-});}
+    });
+    // On laisse le CSS gérer la largeur
+}
 
 
 
@@ -236,9 +251,11 @@ function changeQuantite(index, variation) {
 
 //fonction supprimer
 function supprimer(index){
+    alert("voulez vous retirer ce produit!");
     panier.splice(index,1);
     localStorage.setItem("panier",JSON.stringify(panier));
     sauvegarderEtAfficher();
+    alert("produit supprimer avec sucess !")
 }
 
 //fonction sauvegarde et afficher
@@ -284,3 +301,31 @@ function produitDinamiq(){
     activerAjoutPanier();
 }
 produitDinamiq();
+
+
+//fonction pour le hash du site 
+function gererHash(){
+    const hash = window.location.hash.replace("#","") || "#accueil";
+    const section = document.querySelectorAll("section");
+    section.forEach(element => {
+        if (element.id == hash) {
+            element.style.display = "block";
+        } else {
+            element.style.display = "none";
+        }
+    });
+    // Masquer le footer sur la section accueil ET la section panier
+    const footer = document.querySelector("footer");
+    if (footer) {
+        if (hash === "accueil" || hash === "#accueil" || hash === "elementPanier" || hash === "#elementPanier") {
+            footer.style.display = "none";
+        } else {
+            footer.style.display = "";
+        }
+    }
+}
+
+//afficher la bonne section au chargement 
+window.addEventListener("load",gererHash);
+//change de section quand le hash change
+window.addEventListener("hashchange",gererHash);
