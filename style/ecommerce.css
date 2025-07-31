@@ -1,3 +1,24 @@
+/* --- Ajout menu burger pour mobile --- */
+.burger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 10001;
+}
+.burger span {
+    display: block;
+    width: 28px;
+    height: 4px;
+    margin: 4px 0;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
 /* ########################################### */
 /* le css globale */
 /* ########################################### */
@@ -170,7 +191,7 @@ nav:active{
     flex-direction: column;
     align-items: center;
     row-gap: .5rem;
-    background: transparent;
+    background: va(--lith);
     box-shadow: var(--box-shadown);
     padding: 20px;
     transition: 0.2s ease-in-out;
@@ -233,7 +254,7 @@ nav:active{
 .utilisateur{
     position: absolute;
     top: 110%;
-    right: -110%;
+    right: -200%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -320,7 +341,36 @@ nav:active{
     font-size: clamp(35px,5vw,80px);
     bottom: 1rem;
 }
+#btn-bout{
+    display: block;
+    background: var(--accent);
+    color: var(--lith);
+    padding: 0.5rem 1.5rem;
+    margin-top: 3rem;
+    font-size: 2rem;
+    width: 50%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    text-align:center;
+    text-transform: uppercase;
+    border-radius: 0.5rem;
+    font-weight: 600;
+}
+#btn-bout:hover{
+    background: var(--accent2);
+    color: var(--lith);
+    transform: scale(1.1);
+}
 
+.homeContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    column-gap: 2rem;
+    margin:auto;
+    margin-top: 5rem;
+}
 
 /* ########################################### */
 /* le nouveau arivage */
@@ -354,7 +404,8 @@ nav:active{
     padding: 1rem;
     box-shadow: var(--box-shadown);
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    background-color: red;
     gap: 1.2rem;
     margin-top: 2rem;
 }
@@ -390,11 +441,12 @@ nav:active{
 /* Responsive produits */
 .produitBox{
     position: relative;
+    width: 100%;
     padding: 1.2rem 0.5rem;
     box-shadow: var(--box-shadown);
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1.5rem;
+    gap: 1.5rem 2rem;
     margin-top: 2rem;
     background-color: #f8f8f8;
     border-radius: 0.7rem;
@@ -581,7 +633,9 @@ footer img {
     background: #f7f7f7;
 }
 .copy{
+    width: 100%;
     position:fixed;
+    bottom: 0;
     padding: 2rem 0;
     text-align: center;
     font-size: 13px;
@@ -668,10 +722,41 @@ footer img {
     }
     .produitBox, .news-cont {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        overflow-x: auto;
+        padding-bottom: 1rem;
     }
     .accueil {
         grid-template-columns: 1fr;
         padding: 1vw;
+    }
+    .burger {
+        display: flex;
+    }
+    .lienNav {
+        display: none;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        background: var(--lith);
+        flex-direction: column;
+        width: 70vw;
+        box-shadow: var(--box-shadown);
+        border-radius: 0.5rem;
+        z-index: 10002;
+    }
+    .lienNav.active {
+        display: flex;
+    }
+    .btn, button, input[type="button"], input[type="submit"] {
+        min-height: 44px;
+        min-width: 44px;
+        font-size: 1rem;
+    }
+    .homeContent h1, .sectionHeding h2 {
+        font-size: clamp(1.2rem, 6vw, 2.2rem);
+    }
+    section {
+        margin-bottom: 2rem;
     }
 }
 
@@ -681,6 +766,7 @@ footer img {
     }
     section {
         padding: 10px 0.5vw;
+        margin-bottom: 1.2rem;
     }
     .content1, .total-panier-global {
         width: 100%;
@@ -693,5 +779,24 @@ footer img {
     .total-panier-global {
         font-size: 0.85rem;
         padding: 0.2rem 0.2rem;
+    }
+    .panierConteneur{
+        position: absolute;
+        top: 110%;
+        right: -200%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: .3rem;
+        background: var(--lith);
+        box-shadow: var(--box-shadown);
+        padding: 1rem;
+        transition: 0.2s ease-in-out;
+    }
+    .burger {
+        display: flex;
+    }
+    .lienNav {
+        display: none;
     }
 }

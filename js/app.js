@@ -7,7 +7,7 @@ import { produits } from "../data/produit.js";
 //style pour le nav
 const nav = document.querySelector("nav");
 window.addEventListener("scroll",()=>{
-    if(window.scrolleY !== 0){
+    if(window.scrollY !== 0){
         nav.style.background ="transparent"
     }else{
         nav.style.background = "#fff"
@@ -127,7 +127,9 @@ function activerAjoutPanier() {
             }else{
                 panier.push({id,nom,prix,quantite:1,image});
             }
+            
             sauvegarderEtAfficher();
+            alert("produit ajouter")
         });
     });
 }
